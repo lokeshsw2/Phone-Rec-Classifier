@@ -1,0 +1,105 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+  </head>
+  <body>
+
+  	 <!-- Header -->
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/"> <img src="{% static 'images/logo.png' %}" alt="logo" width="125px" /> </a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="/">All Products</a></li>
+                        <li><a href="/classifier">Classifier</a></li>
+                    </ul>
+                </nav>
+                <img src="{% static 'images/menu.png' %}" alt="menu" class="menu-icon" onclick="menuToggle()" />
+            </div>
+        </div>
+	<h1 style="margin-left:42%; ">Classifier</h1>
+	<br>
+    <form class="col-lg-6 offset-lg-3" style = "margin-top:20px;" method = "post" action = "opt">
+	{% csrf_token %}
+  	<div class="form-row form-group" >
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="Battery Power(mAh)" name = "battery">
+    		</div>
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="Internal Memory(GB)" name = "int_mem">
+    		</div>
+  	</div>
+  	
+  	<div class="form-row form-group" >
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="Front Camera(mpx)" name = "front_camera">
+    		</div>
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="Rear Camera(mpx)" name = "rear_camera">
+    		</div>
+  	</div>
+  	<div class="form-row form-group" >
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="No. Of Cores" name = "cores">
+    		</div>
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="Weight(gm)" name = "wt">
+    		</div>
+  	</div>
+  	<div class="form-row form-group" >
+    		<div class="col">
+      			<input type="text" class="form-control" placeholder="RAM(mb)" name = "ram">
+    		</div>
+    		<div class="col">
+      			<select class="form-control form-control-lg" style = "color:#808080;" name = "dual_sim">
+      				<option disabled selected>Dual Sim</option>
+  				<option value = "0">0</option>
+  				<option value = "1">1</option>
+			</select>
+    		</div>
+  	</div>
+  	<div class="form-row form-group" >
+    		<div class="col">
+      			<select class="form-control form-control-lg" style = "color:#808080;" name = "fourg">
+      				<option disabled selected>4G</option>
+				<option value = "0">0</option>
+  				<option value = "1">1</option>
+			</select>
+    		</div>
+    		<div class="col">
+      			<select class="form-control form-control-lg" style = "color:#808080;" name = "wifi">
+  				<option disabled selected>Wifi</option>
+  				<option value = "0">0</option>
+  				<option value = "1">1</option>
+			</select>
+    		</div>
+  	</div>
+  	
+  	<button type="submit" class="btn-primary" style = "margin-left:42%; margin-bottom:20px; " name="submit_btn" >Check</button>
+</form>
+
+  	<!-- Js for toggle menu -->
+        <script>
+            var menuItems = document.getElementById("menuItems");
+            menuItems.style.maxHeight = "0px";
+            function menuToggle() {
+                if (menuItems.style.maxHeight == "0px") {
+                    menuItems.style.maxHeight = "200px";
+                } else {
+                    menuItems.style.maxHeight = "0px";
+                }
+            }
+        </script>
+  </body>
+</html>

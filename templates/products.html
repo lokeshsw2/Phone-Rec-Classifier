@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Products - RedStore | Ecommerce Website Design</title>
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+    </head>
+    <body>
+        <!-- Header -->
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/"> <img src="{% static 'images/logo.png' %}" alt="logo" width="125px" /> </a>
+                </div>
+                <nav>
+                    <ul id="menuItems">
+                        <li><a href="/">All Products</a></li>
+                        <li><a href="/classifier">Classifier</a></li>
+                    </ul>
+                </nav>
+                <img src="{% static 'images/menu.png' %}" alt="menu" class="menu-icon" onclick="menuToggle()" />
+            </div>
+        </div>
+
+        <div class="small-container">
+            <div class="row">
+                {% for img_url in image_list %}
+                        <div class="temp">
+                                <form  action ="/product_details" method="post" id="ImageForm">
+                                    {% csrf_token %}
+                                    <img src={{img_url.0}} alt="product-1 " />
+                                        <div class="description">
+                                            <h3>{{img_url.1}}</h3>
+                                        </div>
+
+                                    <div class="button">
+                                        <button class="btn" type="submit" name="item_index" value="{{img_url.2}}" form="ImageForm">Buy</button>
+                                    </div>
+                                </form>
+                            </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download Our App</h3>
+                        <p>Download app from android and ios mobile phone.</p>
+                        <div class="app-logo">
+                            <img src="{% static 'images/play-store.png' %}" alt="play-store" />
+                            <img src="{% static 'images/app-store.png' %}" alt="app-store" />
+                        </div>
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="{% static 'images/logo-white.png' %}" alt="logo-white" />
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro iste quaerat sunt, accusamus provident nesciunt
+                            reiciendis!
+                        </p>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful Links</h3>
+                        <ul>
+                            <li>Coupons</li>
+                            <li>Blog Post</li>
+                            <li>Return Policy</li>
+                            <li>join affililate</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Instagram</li>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <p class="copyright">Copytight 2020 - Redstore</p>
+            </div>
+        </div>
+        <!-- Js for toggle menu -->
+        <script>
+            var menuItems = document.getElementById("menuItems");
+            menuItems.style.maxHeight = "0px";
+            function menuToggle() {
+                if (menuItems.style.maxHeight == "0px") {
+                    menuItems.style.maxHeight = "200px";
+                } else {
+                    menuItems.style.maxHeight = "0px";
+                }
+            }
+        </script>
+    </body>
+</html>
